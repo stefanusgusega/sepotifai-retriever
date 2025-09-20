@@ -7,9 +7,6 @@ permissions:
   # Allows the workflow to create, update, or comment on pull requests
   pull-requests: write
 
-  # We should set this to true in order to use GitHub models 
-  models: true
-
 on:
   pull_request:
     # Triggers on these pull request events:
