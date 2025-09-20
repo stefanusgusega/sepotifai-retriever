@@ -1,0 +1,32 @@
+name: Code Lint
+
+on:
+  pull_request:
+    paths:
+      - '**.py'
+      - '.github/workflows/lint.yml'
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  code-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install the project
+        # Installs project dependencies using uv:
+        # --locked: Use exact versions from uv.lock
+        # --all-extras: Install all optional dependencies
+        # --dev: Include development dependencies
+        run: uv sync --locked --all-extras --dev
+
+      - name: Run lint
+        run: uv run ruff check .
