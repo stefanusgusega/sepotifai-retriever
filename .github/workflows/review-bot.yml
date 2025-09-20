@@ -7,8 +7,6 @@ permissions:
   # Allows the workflow to create, update, or comment on pull requests
   pull-requests: write
 
-  models: 'true'
-
 on:
   pull_request:
     # Triggers on these pull request events:
@@ -25,6 +23,6 @@ jobs:
     - uses: anc95/ChatGPT-CodeReview@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        USE_GITHUB_MODELS: 'true'
-        # OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        MODEL: openai/gpt-5-nano
+        OPENAI_API_ENDPOINT: ${{ secrets.OPENROUTER_API_ENDPOINT }}
+        OPENAI_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        MODEL: openai/gpt-oss-120b:free
