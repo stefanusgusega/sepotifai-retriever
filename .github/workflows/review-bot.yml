@@ -25,4 +25,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         OPENAI_API_ENDPOINT: ${{ secrets.OPENROUTER_API_ENDPOINT }}
         OPENAI_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        MODEL: openai/gpt-oss-120b:free
+        MODEL: openai/gpt-oss-20b:free
