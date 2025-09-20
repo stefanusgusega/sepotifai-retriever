@@ -1,0 +1,32 @@
+name: Code Review BOT
+
+permissions:
+  # Allows the workflow to read repository contents
+  contents: read
+
+  # Allows the workflow to create, update, or comment on pull requests
+  pull-requests: write
+
+  # We should set this to true in order to use GitHub models 
+  models: true
+
+on:
+  pull_request:
+    # Triggers on these pull request events:
+    # - opened: When a new pull request is created
+    # - synchronize: When new commits are pushed to the pull request's branch
+    # - reopened: When a previously closed pull request is reopened
+    # - ready_for_review: When a draft pull request is marked as ready for review
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  code-review:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: anc95/ChatGPT-CodeReview@main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        # Using GitHub models
+        USE_GITHUB_MODELS: true
+        MODEL: openai/gpt-5-nano
