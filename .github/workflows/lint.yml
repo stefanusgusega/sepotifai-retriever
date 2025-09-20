@@ -6,6 +6,10 @@ on:
       - '**.py'
       - '.github/workflows/lint.yml'
     types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    paths:
+      - '**.py'
+      - '.github/workflows/lint.yml'
 
 jobs:
   code-lint:
